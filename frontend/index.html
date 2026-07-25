@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum do Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="field-overlay" aria-hidden="true"></div>
+
+    <!-- Controle de Som -->
+    <button id="sound-toggle" class="sound-btn" aria-label="Alternar som">
+        <svg class="sound-icon-on" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18,19.86 21,16.28 21,12C21,7.72 18,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" />
+        </svg>
+        <svg class="sound-icon-off hidden" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor"
+                d="M12,4L9.91,6.09L12,8.18M4.27,3L3,4.27L7.73,9H3V15H7L12,20V13.27L16.25,17.5C15.58,18 14.83,18.4 14,18.71V20.77C15.38,20.44 16.63,19.78 17.7,18.9L20.73,21.93L22,20.66L4.27,3M14,3.23V5.29C14.73,5.5 15.43,5.83 16.07,6.26L14.59,7.74C14.41,7.65 14.21,7.58 14,7.54V9.54L19,14.54C19,13.7 19,12.85 19,12C19,7.72 16,4.14 14,3.23M16.5,12C16.5,11.2 16.1,10.5 15.5,10.05L14,11.55V12.45L15.46,13.9C15.48,13.28 16.5,12.62 16.5,12Z" />
+        </svg>
+    </button>
+
+    <!-- Setas de Navegação -->
+    <button id="btn-prev" class="nav-btn nav-btn-left" aria-label="Página Anterior">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+        </svg>
+    </button>
+    <button id="btn-next" class="nav-btn nav-btn-right" aria-label="Próxima Página">
+        <svg viewBox="0 0 24 24" width="36" height="36">
+            <path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        </svg>
+    </button>
+
+    <!-- Album Container -->
+    <div class="album-viewport" id="album-viewport">
+        <div class="flip-book" id="book">
+
+            <!-- CAPA -->
+            <div class="page page-cover" data-density="hard">
+                <div class="page-content cover-content">
+                    <div class="cover-header">
+                        <span class="cover-seal">ÁLBUM OFICIAL DE FIGURINHAS</span>
+                    </div>
+                    <div class="cover-body">
+                        <p class="cover-edition">EDIÇÃO DESENVOLVEDOR</p>
+                        <h1 class="cover-title" id="capa-nome">DEV</h1>
+                        <h2 class="cover-subtitle" id="capa-numero">#001</h2>
+                        <div class="cover-art">
+                            <div class="art-grid"></div>
+                            <div class="cover-avatar-frame">
+                                <img id="capa-avatar" class="cover-avatar" alt="Foto de perfil" draggable="false">
+                            </div>
+                            <div class="mini-card card-qr">
+                                <img id="capa-qr-linkedin" class="mc-qr" alt="QR Code do LinkedIn" draggable="false">
+                                <span class="mc-num">LINKEDIN</span>
+                            </div>
+                        </div>
+                        <p class="cover-footer-text" id="capa-titulo">DESENVOLVEDOR</p>
+                    </div>
+                    <div class="cover-footer">
+                        <span>CARREIRA · TECNOLOGIA · 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGINA 1: PERFIL -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 01 · APIS: GITHUB · IBGE · FLAGCDN · OPEN-METEO</span>
+                        <h3 class="page-title">Perfil</h3>
+                    </div>
+                    <div class="stickers-grid grid-perfil" id="grid-perfil"></div>
+                    <div class="page-footer"><span>PÁG. 1/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 2: CARREIRA -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 02 · TRAJETÓRIA PROFISSIONAL</span>
+                        <h3 class="page-title">Carreira</h3>
+                    </div>
+                    <div class="stickers-grid grid-4" id="grid-carreira"></div>
+                    <div class="page-footer"><span>PÁG. 2/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 3: TECNOLOGIAS -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 03 · APIS: DEVICON · ICONIFY</span>
+                        <h3 class="page-title">Tecnologias</h3>
+                    </div>
+                    <div class="stickers-grid grid-8" id="grid-tecnologias"></div>
+                    <div class="page-footer"><span>PÁG. 3/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 4: PROJETOS -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 04 · O QUE EU CONSTRUO</span>
+                        <h3 class="page-title">Projetos</h3>
+                    </div>
+                    <div class="stickers-grid" id="grid-projetos"></div>
+                    <div class="page-footer"><span>PÁG. 4/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 5: CERTIFICADOS -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 05 · API: QRSERVER - Atualização em breve!!</span>
+                        <h3 class="page-title">Certificados</h3>
+                    </div>
+                    <div class="stickers-grid grid-certificados" id="grid-certificados"></div>
+                    <div class="page-footer"><span>PÁG. 5/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 6: CURIOSIDADES -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 06 · APIS: ITUNES · OPEN LIBRARY</span>
+                        <h3 class="page-title">Curiosidades</h3>
+                    </div>
+                    <div class="stickers-grid" id="grid-curiosidades"></div>
+                    <div class="page-footer"><span>PÁG. 6/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 7: ESTATISTICAS -->
+            <div class="page page-left">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge">SEÇÃO 07 · ATRIBUTOS DO JOGADOR</span>
+                        <h3 class="page-title">Estatísticas</h3>
+                    </div>
+                    <div class="stats-container" id="stats-container"></div>
+                    <div class="page-footer"><span>PÁG. 7/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- PAGINA 8: LENDARIAS -->
+            <div class="page page-right">
+                <div class="page-content">
+                    <div class="page-header">
+                        <span class="badge badge-lendaria">SEÇÃO 08 · EDIÇÃO LIMITADA</span>
+                        <h3 class="page-title titulo-lendario">Lendárias</h3>
+                    </div>
+                    <div class="stickers-grid grid-4" id="grid-lendarias"></div>
+                    <div class="page-footer"><span>PÁG. 8/8</span><span>ÁLBUM DO DEV</span></div>
+                </div>
+            </div>
+
+            <!-- CONTRACAPA -->
+            <div class="page page-cover-back" data-density="hard">
+                <div class="page-content cover-back-content">
+                    <div class="cover-back-header">
+                        <h2>ÁLBUM DO DEV</h2>
+                    </div>
+                    <div class="cover-back-body">
+                        <div class="tech-logo-collage">
+                            PERFIL · CARREIRA · TECNOLOGIAS · PROJETOS · CERTIFICADOS · LENDÁRIAS
+                        </div>
+                        <p class="summary-text">
+                            Álbum de figurinhas interativo em que cada figurinha é gerada em tempo real por
+                            APIs públicas: GitHub, Open-Meteo, IBGE, FlagCDN, Devicon, Iconify,
+                            QRServer, iTunes e Open Library.
+                        </p>
+                        <div class="qr-links" id="contracapa-qrs"></div>
+                        <div class="barcode-container">
+                            <div class="barcode">
+                                <div class="bar"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar"></div>
+                                <div class="bar thick"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar"></div>
+                                <div class="bar thick"></div>
+                                <div class="bar"></div>
+                                <div class="bar thin"></div>
+                                <div class="bar thick"></div>
+                            </div>
+                            <span class="barcode-number">D E V · 2 0 2 6</span>
+                        </div>
+                    </div>
+                    <div class="cover-back-footer">
+                        <span id="contracapa-rodape">Álbum do Dev · 2026</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
